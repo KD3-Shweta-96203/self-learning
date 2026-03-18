@@ -1,0 +1,87 @@
+#include<iostream>
+using namespace std;
+
+namespace college
+{
+    class Student
+    {
+    private:
+        int rollNo;
+        string name;
+    public:
+        Student(int r, string n)
+        {
+            rollNo = r;
+            name = n;
+        }
+        void setRollNo(int r)
+        {
+            rollNo = r;
+        }
+        void setName(string n)
+        {
+            name = n;
+        }
+        int getRollNo()
+        {
+            return rollNo;
+        }
+        string getName()
+        {
+            return name;
+        }
+        void display()
+        {
+            cout << "Student Roll No: " << rollNo << endl;
+            cout << "Student Name: " << name << endl;
+        }
+    };
+
+    class Teacher
+    {
+    private:
+        int teacherId;
+        string name;
+    public:
+        Teacher(int id, string n)
+        {
+            teacherId = id;
+            name = n;
+        }
+        void setTeacherId(int id)
+        {
+            teacherId = id;
+        }
+        void setName(string n)
+        {
+            name = n;
+        }
+        int getTeacherId()
+        {
+            return teacherId;
+        }
+        string getName()
+        {
+            return name;
+        }
+        void display()
+        {
+            cout << "Teacher ID: " << teacherId << endl;
+            cout << "Teacher Name: " << name << endl;
+        }
+    };
+}
+
+int main()
+{
+    college::Student s1(1, "shweta");
+    college::Teacher t1(101, "Ketan_Kore");
+
+    cout << "Student Details:" << endl;
+    s1.display();
+
+    cout << "\nTeacher Details:" << endl;
+    t1.display();
+
+    return 0;
+}

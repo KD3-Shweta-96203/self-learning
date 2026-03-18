@@ -1,0 +1,96 @@
+#include<iostream>
+using namespace std;
+
+class Person
+{
+protected:
+    string name;
+    int age;
+
+public:
+    Person(string n, int a)
+    {
+        name = n;
+        age = a;
+    }
+    void display()
+    {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+    virtual void work() = 0;
+};
+
+class Student : public Person
+{
+private:
+    int marks;
+
+public:
+    Student(string n, int a, int m) : Person(n, a)
+    {
+        marks = m;
+    }
+    void study()
+    {
+        cout << "Student is studying." << endl;
+    }
+    void work()
+    {
+        cout << "Student studies to score marks." << endl;
+    }
+    void displayStudent()
+    {
+        display();
+        cout << "Marks: " << marks << endl;
+    }
+};
+
+class Teacher : public Person
+{
+private:
+    double salary;
+
+public:
+    Teacher(string n, int a, double s) : Person(n, a)
+    {
+        salary = s;
+    }
+    void teach()
+    {
+        cout << "Teacher is teaching." << endl;
+    }
+    void work()
+    {
+        cout << "Teacher teaches students." << endl;
+    }
+    void displayTeacher()
+    {
+        display();
+        cout << "Salary: " << salary << endl;
+    }
+};
+
+int main()
+{
+    Person* p;
+
+    Student s("shweta", 26, 85);
+    Teacher t("Ketan", 40, 50000);
+
+    cout << "Student Details:" << endl;
+    s.displayStudent();
+    s.study();
+
+    p = &s;
+    p->work();
+
+    cout << "\nTeacher Details:" << endl;
+    t.displayTeacher();
+    t.teach();
+
+    p = &t;
+    p->work();
+
+    return 0;
+}

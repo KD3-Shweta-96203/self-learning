@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+int myStrlen(char str[])
+{
+    int length = 0;
+
+    while(str[length] != '\0')
+    {
+        length++;
+    }
+
+    return length;
+}
+
+void myStrcpy(char dest[], char src[])
+{
+    int i = 0;
+
+    while(src[i] != '\0')
+    {
+        dest[i] = src[i];
+        i++;
+    }
+
+    dest[i] = '\0';
+}
+
+int main()
+{
+    char str1[100], str2[100];
+
+    cout << "Enter a string: ";
+    cin >> str1;
+
+    int len = myStrlen(str1);
+    cout << "Length of string: " << len << endl;
+
+    myStrcpy(str2, str1);
+
+    cout << "Copied string: " << str2 << endl;
+
+    return 0;
+}
