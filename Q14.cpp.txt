@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    int accountNumber;
+    string accountHolderName;
+    double balance;
+
+public:
+    
+    BankAccount(int accNo, string name, double bal) {
+        accountNumber = accNo;
+        accountHolderName = name;
+        balance = bal;
+    }
+
+    
+    void deposit(double amount) {
+        if (amount < 0) {
+            throw amount;  
+        }
+        balance += amount;
+        cout << "Deposited: " << amount << endl;
+    }
+
+   
+    void withdraw(double amount) {
+        if (amount < 0) {
+            throw amount;  // throw negative amount
+        }
+        if (amount > balance) {
+            throw string("Insufficient balance!");
+        }
+        balance -= amount;
+        cout << "Withdrawn: " << amount << endl;
+    }
+
+    // Display balance
+    void displayBalance() const {
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "Account Holder: " << accountHolderName << endl;
+        cout << "Balance: " << balance << endl;
+    }
+};
+
+int main() {
+    BankAccount acc(101, "John Doe", 5000);
+
+    try {
+        acc.deposit(1500);
+        acc.withdraw(2000);
+
+       
+        acc.deposit(-500);      
+        acc.withdraw(10000);   
+    }
+    catch (double amt) {
+        cout << "Exception: Negative amount not allowed -> " << amt << endl;
+    }
+    catch (string msg) {
+        cout << "Exception: " << msg << endl;
+    }
+
+    acc.displayBalance();
+
+    return 0;
+}

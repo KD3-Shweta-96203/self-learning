@@ -1,0 +1,62 @@
+#include<iostream>
+#include<fstream>
+
+using namespace std;
+
+class Student{
+
+    public:
+    int id;
+    char name[50];
+    float marks;
+
+    void input()
+    {
+        cout<<"Enter id: ";
+        cin>>id;
+        cout<<"Enter Name: ";
+        cin>>name;
+        cout<<"Enter Marks: ";
+        cin>>marks;
+    }
+
+    void display(){
+        cout<<"Student Details: "<<endl;
+        cout << "ID: " << id << endl;
+        cout << "Name: " << name << endl;
+        cout << "Marks: " << marks << endl;
+
+    }
+};
+
+int main(){
+    Student s1;
+
+    s1.input();
+
+    ofstream outFile("student.txt", ios::binary);
+    if (!outFile) {
+        cout << "Error opening file for writing!";
+        return 1;
+    }
+
+    outFile.write((char*)&s1, sizeof(s1));
+    outFile.close();
+
+    cout << "\nStudent object saved successfully.\n";
+
+    Student s2;
+    ifstream inFile("student.txt", ios::binary);
+    if (!inFile) {
+        cout << "Error opening file for reading!";
+        return 1;
+    }
+
+    inFile.read((char*)&s2, sizeof(s2));
+    inFile.close();
+
+    cout << "\nStudent object loaded from file:";
+    s2.display();
+
+    return 0;
+}
